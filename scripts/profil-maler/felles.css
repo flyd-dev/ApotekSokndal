@@ -1,0 +1,13 @@
+@font-face { font-family: "Fraunces"; src: url("../../src/assets/fonts/fraunces-latin.woff2") format("woff2-variations"); font-weight: 100 900; }
+@font-face { font-family: "Figtree"; src: url("../../src/assets/fonts/figtree-latin.woff2") format("woff2-variations"); font-weight: 300 900; }
+:root {
+  --fjord-950: #072723; --fjord-900: #0b3833; --fjord-800: #0e4a43; --fjord-700: #135e55; --fjord-600: #1a7468;
+  --fjord-500: #2a8c7d; --fjord-400: #4fae93; --fjord-300: #8fd3b8; --fjord-200: #aedccb; --fjord-100: #d6ede4;
+  --nype-400: #ee7b5b; --nype-100: #fbe0d6; --kalk: #f7f3ec; --sand-100: #f0e9dd; --sand-200: #e4d9c6; --ink: #11211e; --ink-soft: #3f524d;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 100%; height: 100%; }
+body { font-family: "Figtree", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+.display { font-family: "Fraunces", serif; font-variation-settings: "SOFT" 100, "WONK" 0; font-weight: 500; letter-spacing: -0.035em; }
+.topo { position: absolute; inset: 0; -webkit-mask: url("../../src/assets/topo.svg") center / cover; mask: url("../../src/assets/topo.svg") center / cover; }
+.hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; }

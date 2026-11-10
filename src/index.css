@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* Skrifter ligger lokalt (ingen kall til Google Fonts) */
+@font-face {
+  font-family: "Fraunces";
+  src: url("./assets/fonts/fraunces-latin.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Figtree";
+  src: url("./assets/fonts/figtree-latin.woff2") format("woff2-variations");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ───────────── Grafisk profil: farger og skrift ───────────── */
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Fjord – hovedfarge. Dyp, rolig grønn: trygghet og helse, med et nikk til kysten i Sokndal */
+  --color-fjord-50: #eef7f3;
+  --color-fjord-100: #d6ede4;
+  --color-fjord-200: #aedccb;
+  --color-fjord-300: #8fd3b8;
+  --color-fjord-400: #4fae93;
+  --color-fjord-500: #2a8c7d;
+  --color-fjord-600: #1a7468;
+  --color-fjord-700: #135e55;
+  --color-fjord-800: #0e4a43;
+  --color-fjord-900: #0b3833;
+  --color-fjord-950: #072723;
+
+  /* Nype – aksentfarge. Varm korall som gir liv og varme */
+  --color-nype-50: #fdf1ec;
+  --color-nype-100: #fbe0d6;
+  --color-nype-200: #f8c6b4;
+  --color-nype-300: #f4a98f;
+  --color-nype-400: #ee7b5b;
+  --color-nype-500: #e2623f;
+  --color-nype-600: #b8452a;
+  --color-nype-700: #93361f;
+
+  /* Kalk & sand – lyse, varme flater (som de hvite trehusene i Sogndalstrand) */
+  --color-kalk: #f7f3ec;
+  --color-sand-100: #f0e9dd;
+  --color-sand-200: #e4d9c6;
+  --color-sand-300: #cdbfa6;
+
+  --color-ink: #11211e;
+  --color-ink-soft: #3f524d;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-ping-slow: ping-slow 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes ping-slow {
+    75%, 100% { transform: scale(2.4); opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-kalk text-ink font-sans antialiased;
+    font-feature-settings: "ss01";
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 100, "WONK" 0;
+    font-optical-sizing: auto;
+  }
+  ::selection {
+    background: var(--color-fjord-200);
+    color: var(--color-fjord-950);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-nype-400);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-fjord-600;
+  }
+  .field {
+    @apply w-full rounded-2xl border border-sand-200 bg-white px-4 py-3 text-base text-ink shadow-[0_1px_0_rgba(17,33,30,0.04)] transition placeholder:text-ink-soft/80 hover:border-sand-300 focus:border-fjord-500 focus:ring-4 focus:ring-fjord-100 focus:outline-none;
+  }
+  .field[aria-invalid="true"] {
+    @apply border-nype-500 focus:ring-nype-100;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+}
+
+/* Kotelinje-mønsteret tones ut mot kantene */
+.topo-mask {
+  mask-image: radial-gradient(ellipse 70% 65% at 60% 40%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 60% 40%, #000 20%, transparent 75%);
+}
+
+/* Native <select> med egen pil */
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%230e4a43' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 8 5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 3rem;
+}
+
+dialog::backdrop {
+  background: rgb(7 39 35 / 0.55);
+  backdrop-filter: blur(4px);
+}

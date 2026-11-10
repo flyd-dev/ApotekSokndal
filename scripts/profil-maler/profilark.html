@@ -1,0 +1,121 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="felles.css">
+<style>
+  body { background: var(--kalk); padding: 80px; width: 1600px; height: auto; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--sand-200); padding-bottom: 36px; }
+  header h1 { font-size: 72px; color: var(--fjord-950); line-height: 1; }
+  header p { font-size: 20px; color: var(--ink-soft); }
+  .eyebrow { font-size: 15px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--fjord-600); }
+  h2 { font-size: 40px; color: var(--fjord-950); margin: 8px 0 28px; }
+  section { margin-top: 70px; }
+  .grid { display: grid; gap: 24px; }
+  .card { border-radius: 32px; background: #fff; border: 1px solid var(--sand-200); padding: 40px; position: relative; overflow: hidden; }
+  .card.dark { background: var(--fjord-900); border-color: var(--fjord-900); }
+  .card small { position: absolute; left: 28px; bottom: 20px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .card.dark small { color: var(--fjord-300); }
+  .logos { grid-template-columns: 1.3fr 1fr; grid-template-rows: auto auto; }
+  .logos .card { display: grid; place-items: center; min-height: 240px; }
+  .marks { display: flex; gap: 40px; align-items: center; justify-content: center; }
+  .round { width: 150px; height: 150px; border-radius: 50%; background: var(--fjord-800); display: grid; place-items: center; position: relative; overflow: hidden; }
+  .round .topo { background: var(--fjord-600); opacity: .5; }
+  .swatches { grid-template-columns: repeat(7, 1fr); }
+  .sw { border-radius: 24px; overflow: hidden; border: 1px solid var(--sand-200); background: #fff; }
+  .sw div { height: 150px; }
+  .sw p { padding: 14px 16px 2px; font-weight: 700; font-size: 17px; }
+  .sw span { display: block; padding: 0 16px 16px; font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
+  .type { grid-template-columns: 1.2fr 1fr; }
+  .type .big { font-size: 84px; line-height: 1; color: var(--fjord-950); }
+  .type .big em { font-style: normal; color: var(--fjord-600); }
+  .type .meta { margin-top: 24px; font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+  .type .body { font-size: 22px; line-height: 1.6; color: var(--ink-soft); }
+  .type .body b { color: var(--ink); }
+  .btns { display: flex; gap: 12px; margin-top: 24px; }
+  .btn { border-radius: 999px; padding: 16px 26px; font-weight: 600; font-size: 18px; }
+  .elements { grid-template-columns: 1fr 1fr 1fr; }
+  .elements .card { min-height: 280px; }
+  .elements h3 { font-family: Figtree; font-size: 20px; margin-top: 0; }
+  .elements p { color: var(--ink-soft); font-size: 16px; line-height: 1.55; margin-top: 8px; max-width: 360px; }
+  .tile-topo { position: absolute; inset: 120px 0 0 0; }
+  .tile-topo .topo { background: var(--fjord-700); opacity: .5; }
+  footer { margin-top: 70px; font-size: 15px; color: var(--ink-soft); }
+</style></head><body>
+<header>
+  <div>
+    <p class="eyebrow">Grafisk profil · utkast</p>
+    <h1 class="display" style="margin-top:14px">Norges Apotek Sokndal</h1>
+  </div>
+  <p>November 2026</p>
+</header>
+
+<section>
+  <p class="eyebrow">Logo</p>
+  <h2 class="display">Kapselkorset</h2>
+  <div class="grid logos">
+    <div class="card"><img src="../../profil/logo-liggende.svg" style="height:110px"><small>Liggende – hovedlogo</small></div>
+    <div class="card" style="grid-row: span 2"><img src="../../profil/logo-staende.svg" style="height:300px"><small>Stående</small></div>
+    <div class="card dark"><img src="../../profil/logo-liggende-negativ.svg" style="height:110px"><small>Negativ – på mørk bakgrunn</small></div>
+  </div>
+  <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top:24px">
+    <div class="card" style="min-height:240px">
+      <div class="marks">
+        <img src="../../profil/logo-merke.svg" style="height:150px">
+        <div class="round"><div class="topo"></div><svg viewBox="0 0 64 64" style="width:110px;position:relative"><rect x="25" y="12" width="14" height="24" rx="7" fill="#ee7b5b"/><rect x="25" y="26" width="14" height="26" rx="7" fill="#f7f3ec"/><rect x="12" y="25" width="40" height="14" rx="7" fill="#f7f3ec"/></svg></div>
+        <img src="../../profil/logo-merke.svg" style="height:48px">
+        <img src="../../profil/logo-merke.svg" style="height:24px">
+      </div>
+      <small>Merket alene – app-ikon, profilbilde, favicon</small>
+    </div>
+    <div class="card" style="min-height:240px; display:flex; flex-direction:column; justify-content:center">
+      <p style="font-size:20px; line-height:1.6; color:var(--ink-soft)"><b style="color:var(--ink)">Idé:</b> Apotekkorset er bygget av to kapsler. Den korallfargede toppen gir varme og gjør merket lett å kjenne igjen – også helt ned i favicon-størrelse. Navnet «Norges Apotek» står fritt, slik at «Sokndal» kan byttes ut hvis det kommer flere apotek senere.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Farger</p>
+  <h2 class="display">Fjord, nype og kalk</h2>
+  <div class="grid swatches">
+    <div class="sw"><div style="background:#0e4a43"></div><p>Fjord</p><span>#0E4A43<br>Hovedfarge, knapper</span></div>
+    <div class="sw"><div style="background:#0b3833"></div><p>Fjord mørk</p><span>#0B3833<br>Mørke flater</span></div>
+    <div class="sw"><div style="background:#2a8c7d"></div><p>Fjord lys</p><span>#2A8C7D<br>Detaljer</span></div>
+    <div class="sw"><div style="background:#8fd3b8"></div><p>Mynte</p><span>#8FD3B8<br>Tekst på mørk grunn</span></div>
+    <div class="sw"><div style="background:#ee7b5b"></div><p>Nype</p><span>#EE7B5B<br>Aksent, korset</span></div>
+    <div class="sw"><div style="background:#f7f3ec; border-bottom:1px solid #e4d9c6"></div><p>Kalk</p><span>#F7F3EC<br>Bakgrunn</span></div>
+    <div class="sw"><div style="background:#11211e"></div><p>Blekk</p><span>#11211E<br>Tekst</span></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Typografi</p>
+  <h2 class="display">To gratis skrifter</h2>
+  <div class="grid type">
+    <div class="card">
+      <p class="big display">Ditt lokale apotek, <em>midt på Haua.</em></p>
+      <p class="meta"><b style="color:var(--ink)">Fraunces</b> – overskrifter. En varm, myk antikva som gir et trygt og lokalt preg. Gratis (Open Font License).</p>
+    </div>
+    <div class="card">
+      <p class="body"><b>Figtree</b> – brødtekst, knapper og skjema. Vennlig, åpen og svært lettlest på mobil. Gratis (Open Font License).</p>
+      <p class="body" style="margin-top:16px">Vi hjelper deg med resepter, vaksiner og gode råd – med kort vei, kjente fjes og god tid til hver kunde.</p>
+      <div class="btns">
+        <span class="btn" style="background:var(--fjord-800);color:var(--kalk)">Bestill medisin</span>
+        <span class="btn" style="background:var(--nype-400);color:var(--fjord-950)">Bestill vaksinasjon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Grafiske elementer</p>
+  <h2 class="display">Inspirert av Dalane</h2>
+  <div class="grid elements">
+    <div class="card"><h3>Kotelinjer</h3><p>Mønster laget av høydekurver – et nikk til det kuperte landskapet rundt Sokndal.</p><div class="tile-topo"><div class="topo"></div></div></div>
+    <div class="card" style="padding:0">
+      <div style="padding:40px 40px 0"><h3>Landskap</h3><p>Lagvise åser, sol og hvite trehus. Brukes på Facebook, postkort og i trykk.</p></div>
+      <svg viewBox="0 0 400 150" style="position:absolute;bottom:0;left:0;width:100%"><circle cx="300" cy="40" r="26" fill="#ee7b5b"/><path d="M0 80c40-30 80-46 120-30s70 10 110-20 90-30 170 10v110H0Z" fill="#aedccb"/><path d="M0 105c50-40 110-30 150-10s80 0 120-24 90-10 130 20v59H0Z" fill="#4fae93"/><path d="M0 130c60-30 120-34 170-16s100 6 150-14 60 0 80 10v40H0Z" fill="#135e55"/></svg>
+    </div>
+    <div class="card dark"><h3 style="color:var(--kalk)">Tone</h3><p style="color:var(--fjord-100)">Varm, lokal og trygg. Vi skriver «du», bruker korte setninger og sier tydelig hva kunden skal gjøre.</p>
+      <p class="display" style="color:var(--kalk); font-size:34px; line-height:1.15; margin-top:26px; max-width:none">«Takk for at du handler lokalt.»</p></div>
+  </div>
+</section>
+
+<footer>Utkast utarbeidet som forslag. Logo, farger og skrifter kan justeres etter dialog med eierne.</footer>
+</body></html>
