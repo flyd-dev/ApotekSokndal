@@ -37,9 +37,26 @@ Alle fakta ligger samlet i [`src/data/business.ts`](src/data/business.ts). Endre
 - [ ] **E-post og domene.** `post@norgesapoteksokndal.no` og `norgesapoteksokndal.no` er antatt og ikke registrert.
 - [ ] **Facebook-lenke**, når siden er opprettet.
 - [ ] **Hvilke vaksiner og tjenester** de faktisk tilbyr, for eksempel influensa, covid-19, reisevaksiner og eventuelt Medisinstart eller inhalasjonsveiledning.
-- [ ] **Bilder** av apoteket og de ansatte. Ekte foto løfter siden mye.
+- [ ] **Bilder.** Fotoene på siden er lisensfrie stockfoto (Pexels/Unsplash) og viser **ikke** apoteket eller de ansatte, se [`src/assets/foto/KILDER.md`](src/assets/foto/KILDER.md). De bør byttes ut med egne bilder før lansering (se fotoliste under).
 - [ ] **Bokmål eller nynorsk.** Siden er skrevet på bokmål, og teksten er enkel å skrive om.
 - [ ] **Personvernerklæringen** må gjennomgås.
+
+## Bilder – forslag til fotografering
+
+Egne bilder gjør mest for at siden føles ekte. En enkel fotorunde (gjerne mobil i godt dagslys) holder:
+
+1. **Fasaden** med skilt, sett fra Gamleveien – til toppen og «Åpningstider og adresse»
+2. **Portretter** av farmasøyt og ansatte, smilende, med hyllene bak – til toppen og «Om oss»
+3. **Ved disken** – en ansatt som hjelper en kunde (med samtykke) – til «Råd og veiledning»
+4. **Vaksinerommet** / ansatt som klargjør vaksine – til «Vaksinasjon»
+5. **Hyller og produkter** (hudpleie, vitaminer) – til «Reseptfritt og egenpleie»
+
+Bildene byttes ved å legge nye filer med samme navn i `src/assets/foto/`.
+
+**Lokale naturbilder:** På Wikimedia Commons finnes fine bilder fra Sokndal med åpen lisens
+(krever navngivelse), for eksempel
+[Jøssingfjord](https://commons.wikimedia.org/wiki/File:Jossingfjord_20220716_8.jpg) (Helmut Seger, CC BY-SA 4.0) og
+[Sokndal kirke i Hauge sentrum](https://commons.wikimedia.org/wiki/File:Sokndal_kirkested.jpg) (Lars-bh, CC BY-SA 4.0).
 
 ## Koble til skjemaet
 

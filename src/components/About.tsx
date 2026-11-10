@@ -2,6 +2,7 @@ import { Clock3, ShieldCheck, Smile } from "lucide-react";
 import { business } from "../data/business";
 import { LogoMark } from "./Logo";
 import { Reveal } from "./ui/Reveal";
+import omFoto from "../assets/foto/farmasoyt-ved-hylla.webp";
 
 const values = [
   { icon: Clock3, title: "Tid til deg", text: "Vi haster deg ikke gjennom køen." },
@@ -14,7 +15,21 @@ export function About() {
     <section id="om-oss" className="relative overflow-hidden bg-white py-24 sm:py-32" aria-labelledby="om-tittel">
       <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal>
-          <Postcard />
+          <div className="relative mx-auto max-w-lg pb-16 sm:pb-20 lg:mx-0">
+            <figure className="relative overflow-hidden rounded-[2.25rem] shadow-2xl shadow-fjord-950/20 ring-1 ring-sand-200 sm:mr-16">
+              <img
+                src={omFoto}
+                alt="Farmasøyt finner fram en vare fra hylla til en kunde"
+                width={960}
+                height={1200}
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </figure>
+            <div className="absolute right-0 bottom-0 w-[62%] sm:w-[58%]">
+              <Postcard />
+            </div>
+          </div>
         </Reveal>
 
         <div>
@@ -66,9 +81,9 @@ export function About() {
 /** «Postkort fra Haua» – illustrasjon av Dalane-landskapet med små hvite trehus ved sjøen. */
 function Postcard() {
   return (
-    <figure className="relative mx-auto max-w-xl -rotate-2 transition duration-500 hover:rotate-0">
-      <div className="overflow-hidden rounded-[2rem] bg-kalk p-3 shadow-2xl shadow-fjord-950/20 ring-1 ring-sand-200">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-gradient-to-b from-nype-100 via-kalk to-fjord-50">
+    <figure className="relative rotate-3 transition duration-500 hover:rotate-0">
+      <div className="overflow-hidden rounded-[1.4rem] bg-kalk p-2 shadow-2xl shadow-fjord-950/30 ring-1 ring-sand-200 sm:p-2.5">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-gradient-to-b from-nype-100 via-kalk to-fjord-50">
           <svg viewBox="0 0 400 300" className="absolute inset-0 size-full" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
             <circle cx="292" cy="92" r="34" fill="#ee7b5b" />
             <path d="M0 170c40-30 80-46 120-30s70 10 110-20 90-30 170 10v170H0Z" fill="#aedccb" />
@@ -98,19 +113,19 @@ function Postcard() {
             </g>
           </svg>
           {/* Frimerke */}
-          <div className="absolute top-4 left-4 rotate-6 bg-white p-1.5 shadow-md outline-2 outline-offset-[-1px] outline-white outline-dashed">
-            <div className="grid size-16 place-items-center bg-fjord-800">
-              <LogoMark className="size-10" tile={false} />
+          <div className="absolute top-2.5 left-2.5 rotate-6 bg-white p-1 shadow-md outline-2 outline-offset-[-1px] outline-white outline-dashed">
+            <div className="grid size-10 place-items-center bg-fjord-800 sm:size-12">
+              <LogoMark className="size-7 sm:size-8" tile={false} />
             </div>
           </div>
           {/* Poststempel */}
-          <svg viewBox="0 0 120 60" className="absolute top-9 left-[5.5rem] w-32 text-fjord-800/45" aria-hidden="true">
+          <svg viewBox="0 0 120 60" className="absolute top-5 left-14 w-20 text-fjord-800/45 sm:left-16 sm:w-24" aria-hidden="true">
             <circle cx="30" cy="30" r="24" fill="none" stroke="currentColor" strokeWidth="2" />
             <text x="30" y="27" textAnchor="middle" className="fill-current text-[8px] font-bold tracking-widest">4380</text>
             <text x="30" y="38" textAnchor="middle" className="fill-current text-[7px] font-bold tracking-widest">HAUA</text>
             <path d="M58 20c8-5 14 5 22 0s14 5 22 0M58 30c8-5 14 5 22 0s14 5 22 0M58 40c8-5 14 5 22 0s14 5 22 0" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
-          <figcaption className="absolute bottom-4 left-5 font-display text-2xl font-medium text-kalk sm:text-3xl">
+          <figcaption className="absolute bottom-2 left-3 font-display text-base font-medium text-kalk sm:bottom-3 sm:left-4 sm:text-xl">
             Hilsen fra Haua
           </figcaption>
         </div>

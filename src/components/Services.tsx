@@ -4,6 +4,9 @@ import { useInquiry } from "../state/inquiry";
 import { Reveal } from "./ui/Reveal";
 import { SpotlightCard } from "./ui/SpotlightCard";
 import { Topo } from "./ui/Topo";
+import raadFoto from "../assets/foto/kunde-ved-disken.webp";
+import vaksineFoto from "../assets/foto/vaksine-plaster.webp";
+import reseptfrittFoto from "../assets/foto/reseptfritt.webp";
 
 function IconTile({ children, tone = "fjord" }: { children: ReactNode; tone?: "fjord" | "nype" | "dark" }) {
   const tones = {
@@ -79,10 +82,22 @@ export function Services() {
           {/* Vaksinasjon */}
           <Reveal className="lg:row-span-2" delay={0.08}>
             <SpotlightCard className={`${card} flex flex-col`} color="rgba(244, 169, 143, 0.28)">
-              <IconTile tone="nype">
-                <Syringe className="size-6" aria-hidden="true" />
-              </IconTile>
-              <h3 className="mt-6 text-2xl font-medium tracking-tight text-fjord-950 sm:text-3xl">Vaksinasjon</h3>
+              <div className="relative -mx-3 -mt-3 overflow-hidden rounded-[1.6rem] sm:-mx-4 sm:-mt-4">
+                <img
+                  src={vaksineFoto}
+                  alt="Kvinne med plaster på overarmen etter vaksinasjon"
+                  width={1100}
+                  height={1100}
+                  loading="lazy"
+                  className="aspect-[5/4] w-full object-cover object-[center_40%] lg:aspect-square transition duration-700 group-hover/spot:scale-[1.03]"
+                />
+                <span className="absolute top-4 left-4">
+                  <IconTile tone="nype">
+                    <Syringe className="size-6" aria-hidden="true" />
+                  </IconTile>
+                </span>
+              </div>
+              <h3 className="mt-7 text-2xl font-medium tracking-tight text-fjord-950 sm:text-3xl">Vaksinasjon</h3>
               <p className="mt-3 leading-relaxed text-ink-soft">
                 Influensa, covid-19 og reisevaksiner. Send en forespørsel, så finner vi en tid som passer deg.
               </p>
@@ -94,34 +109,42 @@ export function Services() {
                 ))}
               </ul>
 
-              <MiniCalendar />
-
+              <div className="min-h-6 flex-1" aria-hidden="true" />
               <button
                 type="button"
                 onClick={() => openForm("vaksine")}
-                className="group mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-nype-400 px-5 py-3 font-semibold text-fjord-950 transition hover:bg-nype-300"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-nype-400 px-5 py-3 font-semibold text-fjord-950 transition hover:bg-nype-300"
               >
                 Bestill vaksinasjon <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden="true" />
               </button>
             </SpotlightCard>
           </Reveal>
 
-          {/* Råd */}
+          {/* Råd – fotokort */}
           <Reveal delay={0.04}>
-            <SpotlightCard className={card}>
-              <IconTile>
+            <div className="group relative isolate flex h-full min-h-[22rem] flex-col justify-end overflow-hidden rounded-[2rem] bg-fjord-900 p-7 text-kalk ring-1 ring-fjord-900 sm:p-8">
+              <img
+                src={raadFoto}
+                alt="Farmasøyt gir en smilende kunde en pakke over disken"
+                width={1200}
+                height={800}
+                loading="lazy"
+                className="absolute inset-0 -z-10 size-full object-cover object-[30%_center] transition duration-700 group-hover:scale-[1.04]"
+              />
+              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-fjord-950 via-fjord-950/70 to-fjord-950/0" />
+              <span className="grid size-12 place-items-center rounded-2xl bg-kalk/90 text-fjord-700 backdrop-blur">
                 <MessagesSquare className="size-6" aria-hidden="true" />
-              </IconTile>
-              <h3 className="mt-6 text-2xl font-medium tracking-tight text-fjord-950">Råd og veiledning</h3>
-              <p className="mt-3 leading-relaxed text-ink-soft">
+              </span>
+              <h3 className="mt-5 text-2xl font-medium tracking-tight">Råd og veiledning</h3>
+              <p className="mt-2 leading-relaxed text-fjord-100">
                 Lurer du på dosering, bivirkninger eller om medisiner kan tas sammen? Farmasøyten vår tar seg tid til deg.
               </p>
-            </SpotlightCard>
+            </div>
           </Reveal>
 
           {/* Reseptfritt */}
           <Reveal delay={0.12}>
-            <SpotlightCard className={card}>
+            <SpotlightCard className={`${card} flex flex-col`}>
               <IconTile>
                 <ShoppingBasket className="size-6" aria-hidden="true" />
               </IconTile>
@@ -129,6 +152,16 @@ export function Services() {
               <p className="mt-3 leading-relaxed text-ink-soft">
                 Smertestillende, allergi, hudpleie, vitaminer, førstehjelp og produkter til mor og barn.
               </p>
+              <div className="-mx-7 mt-6 -mb-7 flex flex-1 items-end sm:-mx-8 sm:-mb-8">
+                <img
+                  src={reseptfrittFoto}
+                  alt=""
+                  width={1200}
+                  height={525}
+                  loading="lazy"
+                  className="aspect-[16/7] w-full object-cover"
+                />
+              </div>
             </SpotlightCard>
           </Reveal>
 
@@ -173,42 +206,5 @@ export function Services() {
         </div>
       </div>
     </section>
-  );
-}
-
-function MiniCalendar() {
-  const days = [
-    { d: "man", n: 9 },
-    { d: "tir", n: 10 },
-    { d: "ons", n: 11 },
-    { d: "tor", n: 12, active: true },
-    { d: "fre", n: 13 },
-  ];
-  return (
-    <div aria-hidden="true" className="mt-auto pt-8">
-      <div className="rounded-3xl bg-kalk p-4 ring-1 ring-sand-200">
-        <div className="grid grid-cols-5 gap-1.5 text-center">
-          {days.map((x) => (
-            <div
-              key={x.n}
-              className={`rounded-2xl py-2 ${x.active ? "bg-fjord-800 text-kalk shadow-lg shadow-fjord-900/20" : "bg-white text-ink ring-1 ring-sand-200/70"}`}
-            >
-              <div className={`text-[0.7rem] font-semibold uppercase ${x.active ? "text-fjord-200" : "text-ink-soft"}`}>{x.d}</div>
-              <div className="font-display text-xl font-medium">{x.n}</div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-3 grid grid-cols-3 gap-1.5 text-center text-sm font-semibold">
-          {["09.30", "10.30", "13.00"].map((t) => (
-            <span
-              key={t}
-              className={`rounded-xl py-2 ${t === "10.30" ? "bg-nype-400 text-fjord-950" : "bg-white text-ink-soft ring-1 ring-sand-200/70"}`}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }

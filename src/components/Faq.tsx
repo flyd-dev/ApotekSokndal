@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Plus } from "lucide-react";
 import { business } from "../data/business";
 import { Reveal } from "./ui/Reveal";
+import faqFoto from "../assets/foto/leser-pakningsvedlegg.webp";
 
 const faqs = [
   {
@@ -48,6 +49,19 @@ export function Faq() {
             </a>
             .
           </p>
+          <figure className="relative mt-10 hidden overflow-hidden rounded-[2rem] ring-1 ring-sand-200 lg:block">
+            <img
+              src={faqFoto}
+              alt="Kunde leser på pakningen til en medisin ved disken"
+              width={1200}
+              height={800}
+              loading="lazy"
+              className="aspect-[4/3] w-full object-cover object-[60%_center]"
+            />
+            <figcaption className="absolute bottom-4 left-4 rounded-full bg-kalk/95 px-4 py-2 text-sm font-semibold text-fjord-900 shadow-lg backdrop-blur">
+              Usikker? Spør farmasøyten.
+            </figcaption>
+          </figure>
         </Reveal>
 
         <Reveal delay={0.1}>

@@ -6,6 +6,7 @@ import { useOpenStatus } from "../lib/openingHours";
 import { useInquiry } from "../state/inquiry";
 import { LogoMark } from "./Logo";
 import { Topo } from "./ui/Topo";
+import heroPhoto from "../assets/foto/radgivning-portrett.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -145,7 +146,6 @@ export function Hero() {
 /* ───────────────────────── Høyre side: «telefon» med varsler ───────────────────────── */
 
 type Note = { icon: LucideIcon; title: string; body: string; tint: string };
-const ages = ["nå", "4 min", "1 t"];
 const notes: Note[] = [
   { icon: Package, title: "Bestillingen din er klar", body: "Velkommen innom Gamleveien 12 for å hente.", tint: "bg-fjord-100 text-fjord-700" },
   { icon: Syringe, title: "Vaksinetime bekreftet", body: "Influensavaksine torsdag kl. 10.30.", tint: "bg-nype-100 text-nype-600" },
@@ -153,53 +153,17 @@ const notes: Note[] = [
   { icon: MessageCircleHeart, title: "Svar fra farmasøyten", body: "Det går fint å ta dem sammen. God bedring!", tint: "bg-fjord-50 text-fjord-600" },
 ];
 
-const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
-
-function useMediaQuery(q: string) {
-  const [match, setMatch] = useState(() => window.matchMedia(q).matches);
-  useEffect(() => {
-    const m = window.matchMedia(q);
-    const on = () => setMatch(m.matches);
-    m.addEventListener("change", on);
-    return () => m.removeEventListener("change", on);
-  }, [q]);
-  return match;
-}
-
-function useOsloClock() {
-  const fmt = () => {
-    const d = new Date();
-    return {
-      time: new Intl.DateTimeFormat("nb-NO", { timeZone: "Europe/Oslo", hour: "2-digit", minute: "2-digit" }).format(d).replace(":", "."),
-      date: cap(new Intl.DateTimeFormat("nb-NO", { timeZone: "Europe/Oslo", weekday: "long", day: "numeric", month: "long" }).format(d)),
-    };
-  };
-  const [now, setNow] = useState(fmt);
-  useEffect(() => {
-    const id = window.setInterval(() => setNow(fmt()), 20_000);
-    return () => window.clearInterval(id);
-  }, []);
-  return now;
-}
-
 function HeroVisual() {
   const status = useOpenStatus();
-  const clock = useOsloClock();
-  const wide = useMediaQuery("(min-width: 640px)");
-  const max = wide ? 3 : 2;
-  const [count, setCount] = useState(3);
+  const [i, setI] = useState(0);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => setCount((c) => c + 1), 2600);
+    const id = window.setInterval(() => setI((c) => c + 1), 3400);
     return () => window.clearInterval(id);
   }, []);
 
-  // De nyeste varslene vises, nyeste øverst – og rullerer i det uendelige
-  const visible = Array.from({ length: Math.min(count, max) }, (_, i) => {
-    const idx = (count - 1 - i) % notes.length;
-    return { key: count - i, time: ages[i], ...notes[idx] };
-  });
+  const n = notes[i % notes.length];
 
   return (
     <motion.div
@@ -207,54 +171,53 @@ function HeroVisual() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1, delay: 0.3, ease }}
       className="relative mx-auto w-full max-w-[30rem] lg:mr-0"
-      aria-label="Illustrasjon: varsler fra apoteket på mobilen"
-      role="img"
     >
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-fjord-800 p-5 pb-8 shadow-2xl shadow-fjord-950/30 ring-1 ring-fjord-950/10 sm:p-7 sm:pb-10">
-        <Topo className="bg-fjord-500/35" />
-        <div aria-hidden="true" className="absolute -top-24 -right-20 size-72 rounded-full bg-fjord-400/30 blur-3xl" />
+      <figure className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-fjord-800 shadow-2xl shadow-fjord-950/30 ring-1 ring-fjord-950/10">
+        <img
+          src={heroPhoto}
+          alt="En farmasøyt og en kunde ser sammen på en medisin i apoteket"
+          width={960}
+          height={1200}
+          fetchPriority="high"
+          className="size-full object-cover"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-fjord-950/60 via-fjord-950/0 to-transparent" />
+      </figure>
 
-        <div className="relative pt-6 text-center text-kalk">
-          <p className="text-sm font-medium text-fjord-200">{clock.date}</p>
-          <p className="font-display text-7xl leading-none font-medium tracking-tight sm:text-8xl">{clock.time}</p>
-        </div>
-
-        <div className="relative mt-8 flex h-[12.75rem] flex-col gap-3 sm:h-[17.5rem]">
-          <AnimatePresence initial={false} mode="popLayout">
-            {visible.map((n) => (
-              <motion.div
-                key={n.key}
-                layout
-                initial={{ opacity: 0, scale: 0.9, y: -20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.25 } }}
-                transition={{ type: "spring", stiffness: 350, damping: 32 }}
-                className="flex items-start gap-3 rounded-3xl bg-kalk/95 p-3.5 shadow-lg shadow-fjord-950/20 backdrop-blur"
-              >
-                <span className="relative shrink-0">
-                  <LogoMark className="size-10" />
-                  <span className={`absolute -right-1.5 -bottom-1.5 grid size-6 place-items-center rounded-full ring-2 ring-kalk ${n.tint}`}>
-                    <n.icon className="size-3.5" aria-hidden="true" />
-                  </span>
-                </span>
-                <span className="min-w-0 flex-1 text-left">
-                  <span className="flex items-baseline justify-between gap-2">
-                    <span className="truncate text-[0.95rem] font-semibold text-ink">{n.title}</span>
-                    <span className="shrink-0 text-xs text-ink-soft">{n.time}</span>
-                  </span>
-                  <span className="mt-0.5 block text-sm leading-snug text-ink-soft">{n.body}</span>
-                </span>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+      {/* Varsel som flyter over bildet – illustrerer at vi gir beskjed når bestillingen er klar */}
+      <div aria-hidden="true" className="absolute inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-12 sm:-left-12 sm:w-[21.5rem]">
+        <div className="absolute inset-x-4 -bottom-2.5 h-full rounded-3xl bg-kalk/70 shadow-lg shadow-fjord-950/20" />
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 18, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ duration: 0.5, ease }}
+            className="relative flex items-start gap-3 rounded-3xl bg-kalk/95 p-3.5 shadow-xl shadow-fjord-950/25 backdrop-blur"
+          >
+            <span className="relative shrink-0">
+              <LogoMark className="size-10" />
+              <span className={`absolute -right-1.5 -bottom-1.5 grid size-6 place-items-center rounded-full ring-2 ring-kalk ${n.tint}`}>
+                <n.icon className="size-3.5" />
+              </span>
+            </span>
+            <span className="min-w-0 flex-1 text-left">
+              <span className="flex items-baseline justify-between gap-2">
+                <span className="truncate text-[0.95rem] font-semibold text-ink">{n.title}</span>
+                <span className="shrink-0 text-xs text-ink-soft">nå</span>
+              </span>
+              <span className="mt-0.5 block text-sm leading-snug text-ink-soft">{n.body}</span>
+            </span>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Flytende «åpent nå»-merke */}
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-5 left-4 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-fjord-950/15 ring-1 ring-sand-200 sm:top-24 sm:-left-10"
+        className="absolute -top-5 left-4 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-fjord-950/15 ring-1 ring-sand-200 sm:top-20 sm:-left-10"
       >
         <span className="flex items-center gap-2.5">
           <span className="relative flex size-2.5" aria-hidden="true">
@@ -273,7 +236,7 @@ function HeroVisual() {
         rel="noopener noreferrer"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -right-2 -bottom-6 flex items-center gap-3 rounded-2xl bg-white py-3 pr-5 pl-3 shadow-xl shadow-fjord-950/15 ring-1 ring-sand-200 transition hover:ring-fjord-300 sm:-right-8"
+        className="absolute top-[52%] -right-8 hidden items-center gap-3 rounded-2xl bg-white py-3 pr-5 pl-3 shadow-xl shadow-fjord-950/15 ring-1 ring-sand-200 transition hover:ring-fjord-300 sm:flex"
       >
         <span className="grid size-10 place-items-center rounded-xl bg-nype-100 text-nype-600">
           <MapPin className="size-5" aria-hidden="true" />
